@@ -23,7 +23,7 @@ export default async function photoPost(state: {}, formData: FormData) {
       },
       body: formData,
     });
-    if (!response.ok) throw new Error('Email ou usuário já cadastrado.');
+    if (!response.ok) throw new Error('Erro ao postar foto do animal.');
   } catch (error: unknown) {
     return apiError(error);
   }
