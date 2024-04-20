@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
 import { type_second } from '@/functions/fonts';
 import Header from '@/components/header';
@@ -29,6 +30,7 @@ export default async function RootLayout({
             <div>{modal}</div>
             <Footer />
           </UserContextProvider>
+          <SpeedInsights />
         </div>
       </body>
     </html>
