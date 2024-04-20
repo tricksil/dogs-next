@@ -1,5 +1,5 @@
 import photoGet from '@/actions/photo-get';
-import PhotoContent from '@/components/photo/photo-content';
+import FeedModal from '@/components/feed/feed-modal';
 import { notFound } from 'next/navigation';
 
 type FotoIdParams = {
@@ -21,9 +21,5 @@ export default async function FotoIdPage({ params }: FotoIdParams) {
 
   if (!data) return notFound();
 
-  return (
-    <section className="container mainContainer">
-      <PhotoContent data={data} single={true} />
-    </section>
-  );
+  return <FeedModal photo={data} />;
 }
