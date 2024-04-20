@@ -9,7 +9,6 @@ export default async function passwordLost(state: {}, formData: FormData) {
   try {
     if (!login) throw new Error('Preencha os dados');
     const { url } = PASSWORD_LOST();
-    console.log(urlPerdeu);
     const response = await fetch(url, {
       method: 'POST',
       headers: {
