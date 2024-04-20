@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import verifyToken from './functions/verify-token';
 
 export async function middleware(request: NextRequest) {
   const token = request.cookies.get('token')?.value;
-  const authenticated = token ? true : false;
+  const authenticated = token ? await verifyToken(token) : false;
 
   if (!authenticated && request.nextUrl.pathname.startsWith('/conta')) {
     return NextResponse.redirect(new URL('/login', request.url));
