@@ -1,5 +1,7 @@
 'use client';
 
+import logout from '@/actions/logout';
+import validarToken from '@/actions/validate-token';
 import React from 'react';
 type User = {
   id: number;
@@ -29,6 +31,18 @@ export function UserContextProvider({
   user: User | null;
 }) {
   const [userState, setUser] = React.useState<User | null>(user);
+
+  React.useEffect(() => {
+    async function validate() {
+      const { ok } = await validarToken();
+      if (!ok) {
+        await logout();
+        setUser(null);
+      }
+    }
+    if (userState) validate();
+  }, [userState]);
+
   return (
     <UserContext.Provider value={{ user: userState, setUser }}>
       {children}
