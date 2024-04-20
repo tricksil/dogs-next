@@ -10,6 +10,8 @@ import SairIcon from '@/icons/sair-icon';
 import styles from './conta-header.module.css';
 import useMedia from '@/hooks/use-media';
 import Link from 'next/link';
+import logout from '@/actions/logout';
+import { useUser } from '@/context/user-context';
 
 function getTitle(pathname: string) {
   switch (pathname) {
@@ -25,14 +27,15 @@ function getTitle(pathname: string) {
 export default function ContaHeader() {
   const mobile = useMedia('(max-width: 40rem)');
   const [mobileMenu, setMobileMenu] = React.useState(false);
-
   const pathname = usePathname();
+  const { setUser } = useUser();
   React.useEffect(() => {
     setMobileMenu(false);
   }, [pathname]);
 
-  function handleLogout() {
-    // userLogout();
+  async function handleLogout() {
+    await logout();
+    setUser(null);
   }
   return (
     <header className={styles.header}>
