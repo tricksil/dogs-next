@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import styles from './photo-delete.module.css';
 import photoDelete from '@/actions/photo-delete';
