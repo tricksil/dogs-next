@@ -4,8 +4,8 @@ import { useUser } from '@/context/user-context';
 export default function ContaPage() {
   const { user } = useUser();
   return (
-    <main>
+    <section>
       <h1>Conta: {user?.username}</h1>
-    </main>
+    </section>
   );
 }
