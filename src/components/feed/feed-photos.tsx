@@ -3,11 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import styles from './feed-photos.module.css';
 
-export default async function FeedPhotos({ photos }: { photos: Photo[] }) {
+export default function FeedPhotos({ photos }: { photos: Photo[] }) {
   return (
     <ul className={`${styles.feed} animeLeft`}>
       {photos.map((photo, i) => (
-        <li className={styles.photo} key={photo.id + i}>
+        <li className={styles.photo} key={photo.id + i + Math.random()}>
           <Link href={`/foto/${photo.id}`} scroll={false}>
             <Image
               src={photo.src}
