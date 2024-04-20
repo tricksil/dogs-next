@@ -6,7 +6,6 @@ import React from 'react';
 import Loading from '@/components/helper/loading';
 import styles from './feed.module.css';
 
-let time: string | number | NodeJS.Timeout | undefined;
 export default function Feed({
   photos,
   user,
@@ -26,7 +25,7 @@ export default function Feed({
     if (fetching.current) return;
     fetching.current = true;
     setLoading(true);
-    time = setTimeout(() => {
+    setTimeout(() => {
       setPage((currentPage) => currentPage + 1);
       fetching.current = false;
       setLoading(false);
@@ -63,7 +62,6 @@ export default function Feed({
     return () => {
       window.removeEventListener('scroll', infiniteScroll);
       window.removeEventListener('wheel', infiniteScroll);
-      clearTimeout(time);
     };
   }, [infinite]);
 
